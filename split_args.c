@@ -6,7 +6,7 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 09:14:42 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/17 09:16:21 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/17 14:17:43 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*allocate_copy_tab(int word_len, char *str, char **tab, int *tab_i)
 		while (*tab_i >= 0)
 		{
 			free(tab[*tab_i]);
-			*tab_i--;
+			(*tab_i)--;
 		}
 		free(tab);
 		return (NULL);

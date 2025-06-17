@@ -6,7 +6,7 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 16:23:13 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/17 10:45:18 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/17 15:39:05 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ void    here_doc(int ac, char **av, char **ev);
 void    exe_cmd(char *cmd, char **args, char **ev);
 void    error_exit(char *msg, int infile, int outfile);
 int	check_limiter(char *str);
-int check_access(char *infile, char *outfile);
-int ck_here_donc(int ac, char **av, char **ev);
-int ck_pipex(int ac, char **av, char **ev);
+int check_access(char *infile);
+int ck_here_donc(int ac, char **av);
+int ck_pipex(int ac, char **av);
+char    **check_args(char **args);
 
 #endif

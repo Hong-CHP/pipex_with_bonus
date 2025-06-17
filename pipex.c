@@ -6,7 +6,7 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 17:25:14 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/17 11:46:19 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/17 15:29:41 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void    close_parent(int pipefd[], int i, int nb_cmd, int *prev_pipe)
 {
     if (*prev_pipe != -1)
         close(*prev_pipe);
-    if (i != nb_cmd - 1)
+    if (i < nb_cmd - 1)
     {
         close(pipefd[1]);
         *prev_pipe = pipefd[0];
@@ -51,8 +51,10 @@ void    pipe_out_childs(int files[], int pipefd[], int i, int nb_cmd)
     if (i != nb_cmd - 1)
         dup2(pipefd[1], 1); 
     else
+    {
         dup2(files[1], 1);
         close(files[1]);
+    }
 }
 
 void    creat_pipe_fork_childs(int files[], int ac, char **av, char **ev)
@@ -81,4 +83,6 @@ void    creat_pipe_fork_childs(int files[], int ac, char **av, char **ev)
         close_parent(pipefd, i, ac - 3, &prev_pipe);
         i++;
     }
+    if (prev_pipe != -1)
+        close(prev_pipe);
 }

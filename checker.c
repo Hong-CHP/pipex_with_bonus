@@ -6,7 +6,7 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:47:59 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/17 10:48:04 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/17 15:38:13 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_limiter(char *str)
 	return (0);
 }
 
-int check_access(char *infile, char *outfile)
+int check_access(char *infile)
 {
     if (access(infile, F_OK) == -1)
     {
@@ -41,7 +41,7 @@ int check_access(char *infile, char *outfile)
     return (0);
 }
 
-int   ck_here_donc(int ac, char **av, char **ev)
+int   ck_here_donc(int ac, char **av)
 {
     if (ac != 6)
     {
@@ -66,7 +66,7 @@ int   ck_here_donc(int ac, char **av, char **ev)
     return (0);
 }
 
-int ck_pipex(int ac, char **av, char **ev)
+int ck_pipex(int ac, char **av)
 {
     if (ac < 5)
     {
@@ -78,7 +78,30 @@ int ck_pipex(int ac, char **av, char **ev)
         perror("Enter vailable file");
         return (-1);
     }
-    if (check_access(av[1], av[ac - 1]) == -1)
+    if (check_access(av[1]) == -1)
         return (-1);
     return (0);
+}
+
+char    **check_args(char **args)
+{
+    int i;
+    int j;
+    
+    i = 0;
+    while (args[i])
+    {
+        j = 0;
+        while (args[i][j])
+        {
+            if (args[i][j] == '\'' && args[i][j + 2] == '\'' )
+            {
+                args[i][j] = args[i][j + 1];
+                args[i][j + 1] = '\0';
+            }
+            j++;
+        }
+        i++;
+    }
+    return (args);
 }

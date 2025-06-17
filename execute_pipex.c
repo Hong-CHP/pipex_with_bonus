@@ -6,7 +6,7 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 09:21:33 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/17 12:51:34 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/17 15:45:27 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ char	*get_path_after_join(char **args, char	**ev_path, int i)
 {
 	char	*temp;
 	char	*path;
-	char	*exe_path;
 	
 	temp = NULL;
 	path = NULL;
@@ -102,25 +101,28 @@ char	*get_exe_path_if_slash(char *cmd, char *exe_path, char **args)
 	return (exe_path);
 }
 
+// int i = 0;
+// while (args[i])
+// {
+//     fprintf(stderr, "%s\n", args[i]);
+//     i++;
+// }
 void    exe_cmd(char *cmd, char **args, char **ev)
 {
     char    *exe_path;
-
-    exe_path = NULL;
     
+    check_args(args);
+    exe_path = NULL;
     if (if_slash(cmd) > 1)
-		get_exe_path_if_slash(cmd, exe_path, args);
+		exe_path = get_exe_path_if_slash(cmd, exe_path, args);
     else
-    {
         exe_path = find_exe_path(args, ev);
-        if (!exe_path)
-        {
-            perror("No vailable command or path");
-            free_split(args);
-            exit(1);
-        }
+    if (!exe_path)
+    {
+        perror("No vailable command or path");
+        free_split(args);
+        exit(1);
     }
-    // fprintf(stderr, "exe path is %s\n", exe_path);
     if (exe_path)
     {   
         execve(exe_path, args, ev);

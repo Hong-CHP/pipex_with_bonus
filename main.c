@@ -6,7 +6,7 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 16:22:13 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/17 12:50:09 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/17 14:16:14 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,14 +144,14 @@ int main(int argc, char **argv, char **envp)
 {
     if (ft_strncmp("here_doc", argv[1], ft_strlen(argv[1])) == 0)
     {
-        if (ck_here_donc(argc, argv, envp) != -1)
+        if (ck_here_donc(argc, argv) != -1)
             here_doc(argc, argv, envp);
         else
             return (1);
     }
     else
     {
-        if (ck_pipex(argc, argv, envp) == -1)
+        if (ck_pipex(argc, argv) == -1)
             return (1);
         pipex(argc, argv, envp);
     }
