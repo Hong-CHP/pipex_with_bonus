@@ -6,7 +6,7 @@
 #    By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/17 14:04:55 by hporta-c          #+#    #+#              #
-#    Updated: 2025/06/17 14:13:37 by hporta-c         ###   ########.fr        #
+#    Updated: 2025/06/20 15:06:26 by hporta-c         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = pipex
 CC = -gcc
 CFLAGS = -Wall -Werror -Wextra
 SRCS = main.c pipex.c checker.c execute_pipex.c split_args.c utils_others.c \
-		get_next_line.c get_next_line_utils.c utils.c
+		get_next_line.c get_next_line_utils.c utils.c here_doc.c
 OBJS = $(SRCS:.c=.o)
 RM = rm -f
 

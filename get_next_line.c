@@ -6,7 +6,7 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 12:15:09 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/17 11:44:45 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/20 15:28:56 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*cut_line(char *dest, char **rest)
 		line = ft_substr(dest, 0, end + 1);
 	else
 		line = ft_substr(dest, 0, end);
-	if (dest[end] != '\0')
+	if (dest[end] != '\0' && dest[end + 1] != '\0')
 		*rest = ft_strdup(&dest[end + 1]);
 	else
 		*rest = NULL;

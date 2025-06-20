@@ -6,33 +6,33 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 09:14:42 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/17 14:17:43 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/20 15:24:31 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void    free_split(char **str)
+void	free_split(char **str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (!str)
-        return ;
-    while (str[i])
-    {
-        free(str[i]);
-        i++;
-    }
-    free(str);
+	i = 0;
+	if (!str)
+		return ;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }
 
 int	count_words(char *str, char c)
 {
 	int	ch;
 	int	count;
-    int i;
-    
+	int	i;
+
 	i = 0;
 	count = 0;
 	ch = 1;
@@ -79,32 +79,32 @@ char	*allocate_copy_tab(int word_len, char *str, char **tab, int *tab_i)
 	return (word);
 }
 
-char	**ft_fill_split(char **tab, char *str, char c, int *tab_i)
+char	**ft_fill_split(char **t, char *str, char c, int *idx)
 {
-	int	word_len;
+	int	w_l;
 	int	i;
 
-	word_len = 0;
+	w_l = 0;
 	i = 0;
 	while (str[i])
 	{
 		if (str[i] == c)
 		{
-			if (word_len > 0)
+			if (w_l > 0)
 			{
-				tab[*tab_i] = allocate_copy_tab(word_len, &str[i - word_len], tab, tab_i);
-				(*tab_i)++;
-				word_len = 0;
+				t[*idx] = allocate_copy_tab(w_l, &str[i - w_l], t, idx);
+				(*idx)++;
+				w_l = 0;
 			}
 		}
 		else
-			word_len++;
+			w_l++;
 		i++;
 	}
-	if (word_len > 0)
-		tab[(*tab_i)++] = allocate_copy_tab(word_len, &str[i - word_len], tab, tab_i);
-	tab[*tab_i] = NULL;
-	return (tab);
+	if (w_l > 0)
+		t[(*idx)++] = allocate_copy_tab(w_l, &str[i - w_l], t, idx);
+	t[*idx] = NULL;
+	return (t);
 }
 
 char	**ft_split(char	const *s, char c)
