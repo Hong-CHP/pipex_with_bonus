@@ -1,0 +1,30 @@
+./pipex test/input.txt "cat" "grep hello" test/out.txt
+>> hello
+
+./pipex test/input.txt "sort" "uniq" test/out.txt
+>> bar
+>> foo
+>> hello
+>> world
+
+./pipex test/input.txt "badcmd" "wc -l" test/out.txt
+No vailable command or path: No such file or directory
+
+./pipex test/input.txt "/bin/ls" "/usr/bin/wc -l" test/out.txt
+
+touch test/empty.txt
+./pipex test/empty.txt "cat" "wc -l" test/out.txt
+
+touch test/secret.txt
+chmod 000 test/secret.txt
+./pipex test/secret.txt "cat" "wc -l" test/out.txt
+
+./pipex test/input.txt "cat" "cat" test/input.txt
+
+yes "line" | head -n 1000000 > test/big.txt
+./pipex test/big.txt "cat" "wc -l" test/out.txt
+
+./pipex test/input.txt "tr '[:lower:]' '[:upper:]'" "sort" "uniq" "wc -l" test/out.txt
+
+./pipex test/input.txt "grep -v '#'" "cut -d':' -f1" "sort" test/out.txt
+echo -e "john:1234\n#this is a comment\nalice:pass\nbob:xyz\n# another commen" > test/input.txt

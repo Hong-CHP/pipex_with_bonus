@@ -1,0 +1,15 @@
+./pipex here_doc EOF "cat" "wc -l" output.txt
+
+./pipex here_doc STOP "grep hello" "wc -c" output.txt
+
+./pipex here_doc EOF "cat" "wc -c" output.txt
+
+./pipex here_doc END "head -n 2" "tail -n 1" output.txt
+
+./pipex here_doc EOF "invalid_cmd" "wc -l" output.txt
+
+touch protected.txt && chmod 000 protected.txt
+./pipex here_doc EOF "cat" "wc -l" protected.txt
+
+./pipex here_doc EOF "cat" "wc -l" output.txt 
+ctrl + c stop input content, here.txt need to be unlinked
