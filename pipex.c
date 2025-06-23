@@ -6,7 +6,7 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 16:22:13 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/22 11:08:42 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:52:38 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ pid_t	make_pipe_child1(int files[], char *cmd1, char **ev, int pipefd[])
 {
 	pid_t	pid;
 	char	**args;
-	
+
 	pid = fork();
 	if (pid < 0)
-		error_exit("Display file error",files[0], files[1]);
+		error_exit("Display file error", files[0], files[1]);
 	if (pid == 0)
 	{
 		close(pipefd[0]);
@@ -37,10 +37,10 @@ pid_t	make_pipe_child2(int files[], char *cmd2, char **ev, int pipefd[])
 {
 	pid_t	pid;
 	char	**args;
-	
+
 	pid = fork();
 	if (pid < 0)
-		error_exit("Display file error",files[0], files[1]);
+		error_exit("Display file error", files[0], files[1]);
 	if (pid == 0)
 	{
 		close(pipefd[1]);
@@ -56,12 +56,12 @@ pid_t	make_pipe_child2(int files[], char *cmd2, char **ev, int pipefd[])
 
 void	creat_pipe(int files[], char **av, char **ev)
 {
-	int	pipefd[2];
+	int		pipefd[2];
 	pid_t	pid1;
 	pid_t	pid2;
 
 	if (pipe(pipefd) == -1)
-		error_exit("Display file error",files[0], files[1]);
+		error_exit("Display file error", files[0], files[1]);
 	pid1 = make_pipe_child1(files, av[2], ev, pipefd);
 	pid2 = make_pipe_child2(files, av[3], ev, pipefd);
 	close(pipefd[0]);
@@ -79,7 +79,7 @@ void	pipex(char **av, char **ev)
 	infile = open(av[1], O_RDONLY);
 	outfile = open(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (infile < 0 || outfile < 0)
-		error_exit("Display file error",infile, outfile);
+		error_exit("Display file error", infile, outfile);
 	files[0] = infile;
 	files[1] = outfile;
 	creat_pipe(files, av, ev);
@@ -91,13 +91,18 @@ int	main(int argc, char *argv[], char **envp)
 {
 	if (argc != 5)
 	{
-		perror("Not enough arguments");
+		ft_putstr("Error: Not enough arguments");
 		return (1);
 	}
 	if (!argv[1] || !argv[4])
 	{
-		perror("Invalid files arguments");
+		ft_putstr("Error: Enter vailable file");
 		return (1);
+	}
+	if (!argv[2][0] || !argv[3][0])
+	{
+		ft_putstr("Error: Enter vailable path");
+		return (-1);
 	}
 	if (check_access(argv[1], argv[4]) == -1)
 		return (1);

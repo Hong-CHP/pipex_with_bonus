@@ -6,7 +6,7 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 09:50:35 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/22 09:51:35 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/23 16:23:12 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**extract_path(char **ev)
 			{
 				perror("Extract path no success");
 				free_split(paths);
-				exit (1);
+				exit (127);
 			}
 			return (paths);
 		}
@@ -95,7 +95,7 @@ char	*get_exe_path_if_slash(char *cmd, char *exe_path, char **args)
 		{
 			perror("Dose not have permissions");
 			free_split(args);
-			exit (1);
+			exit (126);
 		}
 	}
 	return (exe_path);
@@ -121,12 +121,12 @@ void	exe_cmd(char *cmd, char **args, char **ev)
 	{
 		perror("No vailable command or path");
 		free_split(args);
-		exit (1);
+		exit (127);
 	}
 	if (exe_path)
 	{
 		execve(exe_path, args, ev);
-		perror("No vailable path");
+		perror("Error executions");
 		free(exe_path);
 	}
 	free_split(args);

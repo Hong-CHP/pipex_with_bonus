@@ -6,7 +6,7 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 16:23:13 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/22 11:39:17 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:46:51 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 int		check_access(char *infile, char *outfile);
 char	**check_args(char **args);
+void	ft_putstr(char *str);
 size_t	ft_strlen(const char *s);
 int		if_slash(char *str);
 int		if_space(char *str);

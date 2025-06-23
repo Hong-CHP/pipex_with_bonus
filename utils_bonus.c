@@ -6,7 +6,7 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 09:55:37 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/22 09:55:51 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/23 16:25:01 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	error_exit(char *msg, int infile, int outfile)
 		close(infile);
 	if (outfile > 0)
 		close(outfile);
-	exit(1);
+	exit(EXIT_FAILURE);
 }
 
 char	**sep_split(char *str, char sep)

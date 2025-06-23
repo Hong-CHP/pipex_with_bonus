@@ -6,7 +6,7 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 09:37:55 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/22 11:30:10 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:47:23 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/wait.h>
 
 size_t	ft_strlen(const char *s);
+void	ft_putstr(char *str);
 int		if_slash(char *str);
 int		if_space(char *str);
 int		ft_strncmp(char *s1, char *s2, size_t n);

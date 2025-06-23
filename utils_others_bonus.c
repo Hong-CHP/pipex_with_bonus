@@ -6,12 +6,21 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 09:54:55 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/22 11:22:25 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:49:21 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "pipex_bonus.h"
+
+void	ft_putstr(char *str)
+{
+	while (*str)
+	{
+		write(2, str, 1);
+		str++;
+	}
+	write(1, "\n", 1);
+}
 
 size_t	ft_strlen(const char *s)
 {

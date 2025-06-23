@@ -6,7 +6,7 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 09:20:48 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/22 11:24:53 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:55:49 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,17 @@ int	main(int argc, char **argv, char **envp)
 {
 	if (argc < 5)
 	{
-		perror("Not enough parameters");
-		exit (EXIT_FAILURE);
+		ft_putstr("Error: Not enough parameters");
+		return (1);
 	}
-	if (ft_strncmp("here_doc", argv[1], ft_strlen(argv[1])) == 0)
+	else if (argc == 6
+		&& ft_strncmp("here_doc", argv[1], ft_strlen(argv[1])) == 0)
 	{
+		if (!argv[3][0] || !argv[4][0])
+		{
+			ft_putstr("Error: Enter vailable path");
+			return (-1);
+		}
 		if (ck_here_donc(argc, argv) != -1)
 			here_doc(argc, argv, envp);
 		else

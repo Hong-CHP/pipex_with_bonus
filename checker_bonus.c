@@ -6,7 +6,7 @@
 /*   By: hporta-c <hporta-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 09:49:02 by hporta-c          #+#    #+#             */
-/*   Updated: 2025/06/22 11:30:01 by hporta-c         ###   ########.fr       */
+/*   Updated: 2025/06/23 18:47:00 by hporta-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ int	check_access(char *infile, char *outfile)
 
 int	ck_here_donc(int ac, char **av)
 {
-	if (ac != 6)
+	if (!av[3][0] || !av[4][0])
 	{
-		perror("Total numbers of parameters are incorrect");
+		ft_putstr("Error: Enter vailable path");
 		return (-1);
 	}
 	if (!av[ac - 1] || !av[ac - 1][0])
 	{
-		perror("Enter vailable file");
+		ft_putstr("Error: Enter vailable file");
 		return (-1);
 	}
 	if (access(av[ac - 1], F_OK) == 0 && access(av[ac - 1], W_OK) == -1)
@@ -65,7 +65,7 @@ int	ck_here_donc(int ac, char **av)
 	}
 	if (check_limiter(av[2]) == -1)
 	{
-		perror("LIMITER must be written in major");
+		ft_putstr("Error: Limiter must be written in major");
 		return (-1);
 	}
 	return (0);
@@ -73,14 +73,9 @@ int	ck_here_donc(int ac, char **av)
 
 int	ck_pipex(int ac, char **av)
 {
-	if (ac < 5)
-	{
-		perror("Not enough parameters");
-		exit (EXIT_FAILURE);
-	}
 	if (!av[1] || !av[ac - 1])
 	{
-		perror("Enter vailable file");
+		ft_putstr("Error: Enter vailable file");
 		exit (EXIT_FAILURE);
 	}
 	if (check_access(av[1], av[ac - 1]) == -1)
